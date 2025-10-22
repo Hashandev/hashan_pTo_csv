@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Handwriting to CSV Converter - For Minu ❤️</title>
+    <title>Text to CSV Converter - For Minu ❤️</title>
     <style>
         * {
             margin: 0;
@@ -119,64 +119,6 @@
             padding: 40px;
         }
 
-        .upload-section {
-            border: 3px dashed #ff6b9d;
-            border-radius: 15px;
-            padding: 40px;
-            text-align: center;
-            background: #fff5f8;
-            margin-bottom: 30px;
-            transition: all 0.3s;
-        }
-
-        .upload-section:hover {
-            border-color: #c06c84;
-            background: #ffe6f0;
-        }
-
-        .upload-section.dragover {
-            background: #ffd6e7;
-            border-color: #c06c84;
-            transform: scale(1.02);
-        }
-
-        .upload-icon {
-            font-size: 60px;
-            margin-bottom: 20px;
-        }
-
-        input[type="file"] {
-            display: none;
-        }
-
-        .upload-btn {
-            background: linear-gradient(135deg, #ff6b9d 0%, #c06c84 100%);
-            color: white;
-            padding: 15px 40px;
-            border: none;
-            border-radius: 30px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: transform 0.2s;
-            font-weight: 600;
-        }
-
-        .upload-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(255, 107, 157, 0.4);
-        }
-
-        .preview-section {
-            display: none;
-            margin-bottom: 30px;
-        }
-
-        .preview-section img {
-            max-width: 100%;
-            border-radius: 10px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-        }
-
         .instructions {
             background: #fff9e6;
             border-left: 4px solid #ffc107;
@@ -199,6 +141,49 @@
             margin-bottom: 8px;
         }
 
+        .input-section {
+            border: 3px solid #ff6b9d;
+            border-radius: 15px;
+            padding: 30px;
+            background: #fff5f8;
+            margin-bottom: 30px;
+        }
+
+        .input-section h3 {
+            color: #c06c84;
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 300px;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-family: monospace;
+            font-size: 14px;
+            resize: vertical;
+        }
+
+        .convert-btn {
+            background: linear-gradient(135deg, #ff6b9d 0%, #c06c84 100%);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 30px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: transform 0.2s;
+            font-weight: 600;
+            margin-top: 15px;
+        }
+
+        .convert-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(255, 107, 157, 0.4);
+        }
+
         .csv-preview {
             display: none;
             margin-top: 30px;
@@ -207,17 +192,6 @@
         .csv-preview h3 {
             color: #333;
             margin-bottom: 15px;
-        }
-
-        textarea {
-            width: 100%;
-            min-height: 200px;
-            padding: 15px;
-            border: 2px solid #ddd;
-            border-radius: 10px;
-            font-family: monospace;
-            font-size: 14px;
-            resize: vertical;
         }
 
         .download-btn {
@@ -236,27 +210,6 @@
         .download-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 5px 20px rgba(40, 167, 69, 0.4);
-        }
-
-        .loading {
-            display: none;
-            text-align: center;
-            padding: 30px;
-        }
-
-        .spinner {
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #ff6b9d;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 20px;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
         }
 
         .alert {
@@ -303,20 +256,21 @@
                 <div class="floating-heart">💝</div>
             </div>
             <div class="hearts-decoration">💝 ❤️ 💕</div>
-            <h1>📝 Handwriting to CSV Converter</h1>
+            <h1>📝 Text to CSV Converter</h1>
             <div class="for-minu">❤️ Made for Minu ❤️</div>
             <div class="love-message">With Love 💖</div>
-            <p>Upload a photo of handwritten patient details and convert it to CSV instantly</p>
+            <p>Enter text with commas and convert to CSV format instantly</p>
         </div>
 
         <div class="content">
             <div class="instructions">
                 <h3>ℹ️ How to Use:</h3>
                 <ol>
-                    <li>Take a clear photo of your handwritten patient details</li>
-                    <li>Make sure the handwriting is legible and well-lit</li>
-                    <li>Upload the photo using the button below</li>
-                    <li>Review and edit the extracted data</li>
+                    <li>Type or paste your text with commas in the box below</li>
+                    <li>Each line will become a row in the CSV</li>
+                    <li>Commas separate the columns</li>
+                    <li>Click "Convert to CSV" button</li>
+                    <li>Review and edit the CSV data if needed</li>
                     <li>Download the CSV file</li>
                 </ol>
             </div>
@@ -324,28 +278,19 @@
             <div class="alert alert-error" id="errorAlert"></div>
             <div class="alert alert-info" id="infoAlert"></div>
 
-            <div class="upload-section" id="uploadSection">
-                <div class="upload-icon">📤</div>
-                <h3>Upload Handwritten Note Photo</h3>
-                <p style="color: #666; margin: 15px 0;">Drag and drop or click to select</p>
-                <input type="file" id="fileInput" accept="image/*">
-                <button class="upload-btn" onclick="document.getElementById('fileInput').click()">
-                    Choose Photo
+            <div class="input-section">
+                <h3>✏️ Enter Your Text with Commas:</h3>
+                <p style="color: #666; margin-bottom: 10px;">Each line = one row, commas = column separators</p>
+                <textarea id="manualInput" placeholder="Name,Phone,Age,Address,Date
+John Doe,071-1234567,30,Colombo,25/10/2025
+Jane Smith,077-9876543,28,Kandy,26/10/2025"></textarea>
+                <button class="convert-btn" onclick="processManualInput()">
+                    🔄 Convert to CSV
                 </button>
             </div>
 
-            <div class="preview-section" id="previewSection">
-                <h3>📷 Uploaded Image:</h3>
-                <img id="previewImage" alt="Preview">
-            </div>
-
-            <div class="loading" id="loading">
-                <div class="spinner"></div>
-                <p>Processing your image... This may take a few moments.</p>
-            </div>
-
             <div class="csv-preview" id="csvPreview">
-                <h3>📊 Extracted CSV Data:</h3>
+                <h3>📊 CSV Output:</h3>
                 <textarea id="csvData"></textarea>
                 <button class="download-btn" onclick="downloadCSV()">⬇️ Download CSV File</button>
             </div>
@@ -357,75 +302,44 @@
     </div>
 
     <script>
-        const fileInput = document.getElementById('fileInput');
-        const uploadSection = document.getElementById('uploadSection');
-        const previewSection = document.getElementById('previewSection');
-        const previewImage = document.getElementById('previewImage');
-        const loading = document.getElementById('loading');
+        const manualInput = document.getElementById('manualInput');
         const csvPreview = document.getElementById('csvPreview');
         const csvData = document.getElementById('csvData');
         const errorAlert = document.getElementById('errorAlert');
         const infoAlert = document.getElementById('infoAlert');
 
-        // Drag and drop functionality
-        uploadSection.addEventListener('dragover', (e) => {
-            e.preventDefault();
-            uploadSection.classList.add('dragover');
-        });
-
-        uploadSection.addEventListener('dragleave', () => {
-            uploadSection.classList.remove('dragover');
-        });
-
-        uploadSection.addEventListener('drop', (e) => {
-            e.preventDefault();
-            uploadSection.classList.remove('dragover');
-            const files = e.dataTransfer.files;
-            if (files.length > 0) {
-                handleFile(files[0]);
-            }
-        });
-
-        fileInput.addEventListener('change', (e) => {
-            if (e.target.files.length > 0) {
-                handleFile(e.target.files[0]);
-            }
-        });
-
-        function handleFile(file) {
-            if (!file.type.startsWith('image/')) {
-                showError('Please upload an image file');
+        function processManualInput() {
+            const text = manualInput.value;
+            if (!text.trim()) {
+                showError('Please enter some data first');
                 return;
             }
-
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                previewImage.src = e.target.result;
-                previewSection.style.display = 'block';
-                showInfo('Image uploaded! Now processing with AI...');
-                processImage(e.target.result);
-            };
-            reader.readAsDataURL(file);
+            
+            showInfo('Converting to CSV...');
+            const csv = convertToCSV(text);
+            csvData.value = csv;
+            csvPreview.style.display = 'block';
+            showInfo('✅ Data converted successfully! You can edit it below before downloading.');
         }
 
-        async function processImage(imageData) {
-            loading.style.display = 'block';
-            csvPreview.style.display = 'none';
-            hideAlerts();
-
-            // Simulate AI processing (In production, this would call an OCR API)
-            setTimeout(() => {
-                // Demo data - in production, this would be the OCR result
-                const demoCSV = `Name,Contact No,Age,Address,Appointment Date
-Lahiru Kumara,072-5510017,80,92/D Kadawatha Gampaha,08/11/2025
-Pradeep Lakshan,077-1170837,18,95/2 Nitaweratiya,22/10/2025
-Lakshan Kumara,071-1170123,22,Kaluthara,22/10/2025`;
-
-                csvData.value = demoCSV;
-                loading.style.display = 'none';
-                csvPreview.style.display = 'block';
-                showInfo('✅ Data extracted successfully! You can edit it below before downloading.');
-            }, 2000);
+        function convertToCSV(text) {
+            // Split by lines
+            const lines = text.split('\n');
+            let csv = '';
+            
+            // Process each line
+            lines.forEach(line => {
+                if (line.trim()) {
+                    // Split by comma
+                    const values = line.split(',').map(val => val.trim());
+                    
+                    // Wrap each value in quotes and join with comma
+                    const csvLine = values.map(val => `"${val}"`).join(',');
+                    csv += csvLine + '\n';
+                }
+            });
+            
+            return csv;
         }
 
         function downloadCSV() {
@@ -434,7 +348,7 @@ Lakshan Kumara,071-1170123,22,Kaluthara,22/10/2025`;
             const url = window.URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = `patient_details_${new Date().getTime()}.csv`;
+            a.download = `data_${new Date().getTime()}.csv`;
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
@@ -452,11 +366,6 @@ Lakshan Kumara,071-1170123,22,Kaluthara,22/10/2025`;
             infoAlert.textContent = message;
             infoAlert.style.display = 'block';
             setTimeout(() => infoAlert.style.display = 'none', 5000);
-        }
-
-        function hideAlerts() {
-            errorAlert.style.display = 'none';
-            infoAlert.style.display = 'none';
         }
     </script>
 </body>
